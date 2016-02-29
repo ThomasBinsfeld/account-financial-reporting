@@ -53,6 +53,7 @@ AccountingNone
 
 """
 
+
 class AccountingNoneType(object):
 
     def __add__(self, other):
@@ -62,9 +63,9 @@ class AccountingNoneType(object):
         if other is None:
             return AccountingNone
         return other
-    
+
     __radd__ = __add__
-    
+
     def __sub__(self, other):
         """
         Overload of the - operator
@@ -96,19 +97,19 @@ class AccountingNoneType(object):
         if other is None:
             return AccountingNone
         return -other
-    
+
     def __pos__(self):
         """
         Overload of the unary + operator
         """
         return self
-    
+
     def __neg__(self):
         """
         Overload of unary - operatpr
         """
         return self
-    
+
     def __repr__(self):
         """
         Overload of repr
@@ -156,7 +157,7 @@ class AccountingNoneType(object):
         Overload of str
         """
         return ''
-    
+
     def __unicode__(self):
         """
         Overload of unicode

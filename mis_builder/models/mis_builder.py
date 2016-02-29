@@ -536,7 +536,7 @@ class MisReportInstancePeriod(models.Model):
 
                 if kpi_val is AccountingNone:
                     kpi_val = 0.0
-                    
+
                 localdict[kpi.name] = kpi_val
                 try:
                     kpi_style = None
