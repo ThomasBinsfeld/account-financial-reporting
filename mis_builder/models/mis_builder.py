@@ -682,7 +682,6 @@ class MisReportInstance(models.Model):
         for kpi in self.report_id.kpi_ids:
             rows_by_kpi_name[kpi.name] = {
                 'kpi_name': kpi.description,
-                'kpi_technical_name': kpi.name,
                 'cols': [],
                 'default_style': kpi.default_css_style
             }
