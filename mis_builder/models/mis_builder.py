@@ -16,6 +16,7 @@ from openerp.tools.safe_eval import safe_eval
 
 from .aep import AccountingExpressionProcessor as AEP
 from .aggregate import _sum, _avg, _min, _max
+from .accounting_none import AccountingNone
 
 _logger = logging.getLogger(__name__)
 
@@ -142,6 +143,8 @@ class MisReportKpi(models.Model):
         assert len(self) == 1
         if value is None:
             return '#N/A'
+        elif value is AccountingNone:
+            return ''
         elif self.type == 'num':
             return self._render_num(lang_id, value, self.divider,
                                     self.dp, self.prefix, self.suffix)
@@ -497,6 +500,7 @@ class MisReportInstancePeriod(models.Model):
             'max': _max,
             'len': len,
             'avg': _avg,
+            'AccountingNone': AccountingNone,
         }
 
         localdict.update(self._fetch_queries())
@@ -530,6 +534,9 @@ class MisReportInstancePeriod(models.Model):
                 else:
                     kpi_val_rendered = kpi.render(lang_id, kpi_val)
 
+                if kpi_val is AccountingNone:
+                    kpi_val = 0.0
+                    
                 localdict[kpi.name] = kpi_val
                 try:
                     kpi_style = None
@@ -675,6 +682,7 @@ class MisReportInstance(models.Model):
         for kpi in self.report_id.kpi_ids:
             rows_by_kpi_name[kpi.name] = {
                 'kpi_name': kpi.description,
+                'kpi_technical_name': kpi.name,
                 'cols': [],
                 'default_style': kpi.default_css_style
             }
