@@ -354,10 +354,10 @@ class AccountingExpressionProcessor(object):
                 account_ids = self._account_ids_by_code[account_code]
                 for account_id in account_ids:
                     debit, credit = \
-                        account_ids_data.get(account_id, (0.0, 0.0))
+                        account_ids_data.get(account_id,
+                                             (AccountingNone, AccountingNone))
                     if field == 'bal':
-                        if debit != 0 or credit != 0:
-                            v += debit - credit
+                        v += debit - credit
                     elif field == 'deb':
                         v += debit
                     elif field == 'crd':
