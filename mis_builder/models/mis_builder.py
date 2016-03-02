@@ -14,7 +14,7 @@ import pytz
 from openerp import api, fields, models, _
 from openerp.tools.safe_eval import safe_eval
 
-from aep import AccountingExpressionProcessor as AEP
+from .aep import AccountingExpressionProcessor as AEP
 from .aggregate import _sum, _avg, _min, _max
 from .accounting_none import AccountingNone
 

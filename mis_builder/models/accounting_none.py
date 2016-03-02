@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
+
 """
 Provides the AccountingNone singleton
 
 AccountingNone is a null value that dissolves in basic arithmetic operations,
 as illustrated in the examples below
-"""
 
-"""
 >>> 1 + 1
 2
 >>> 1 + AccountingNone
